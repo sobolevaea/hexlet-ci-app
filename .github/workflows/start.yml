@@ -2,11 +2,11 @@ name: start
 on: push
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest]
+    runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: sudo apt-get install build-essential
       - run: make setup
       - run: make start
       - run: make lint
